@@ -4,7 +4,7 @@
 
 import sys 
 #-> provide various function and variable that are used to manipulate python runtime environment
-
+from src.logger import logging # need to use this for update error in logger file
 
 # create custom error message
 def error_message_detail(error, error_detail:sys):

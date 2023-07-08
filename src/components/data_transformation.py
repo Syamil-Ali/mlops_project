@@ -110,15 +110,15 @@ class DataTransformation:
 
             train_arr = np.c_[
                 input_feature_train_arr, np.array(target_feature_train_df)
-            ]
+            ] # combine input with target feature
 
             test_arr = np.c_[
                 input_feature_test_arr, np.array(target_feature_test_df)
-            ]
+            ] # combine input with target feature
 
             logging.info(f"Saved preprocessing object.")
 
-            save_object( #saving pickle file in folder
+            save_object( #saving preprocessing object into pickle file so that will be easier to reuse the setting
                 file_path = self.data_transformation_config.preprocessor_obj_file_path,
                 obj = preprocessing_obj
             )

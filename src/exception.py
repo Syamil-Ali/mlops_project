@@ -7,7 +7,7 @@ import sys
 from src.logger import logging # need to use this for update error in logger file
 
 # create custom error message
-def error_message_detail(error, error_detail:sys):
+def error_message_detail(error, error_detail:sys): #expect it to be sys object type
 
     _,_, exc_tb = error_detail.exc_info() # get execution info
     
@@ -25,11 +25,17 @@ def error_message_detail(error, error_detail:sys):
 class CustomException(Exception):
 
     def __init__(self, error_message, error_detail:sys):
-        super().__init__(error_message)
+        super().__init__(error_message) # get access to the error_detail class object 
         self.error_message = error_message_detail(error_message, error_detail= error_detail)
+
+    # basically on why need to access the object for the error_message is because
+    # --> raise CustomException(e, sys) ... (just look back at the raise exception)
+    # --> e is the Exception type of object, so need to get access to the object
+
 
     def __str__(self):
         return self.error_message
+
 
 
 

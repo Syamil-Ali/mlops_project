@@ -38,8 +38,8 @@ class ModelTrainer:
             logging.info("Split training and testing input data")
 
             X_train, y_train, X_test, y_test = (
-                train_array[:,:-1],
-                train_array[:,-1],
+                train_array[:,:-1], # slicing notation that get all column except the last one
+                train_array[:,-1], # slicing notation that only get the last columns
                 test_array[:,:-1],
                 test_array[:,-1]
             )

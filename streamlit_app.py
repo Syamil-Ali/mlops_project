@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
 
-st.header('Student Exam Performance Prediction')
+st.header('Student Exam Performance Prediction v2')
 
 
 with st.form("Prediction_Form"):

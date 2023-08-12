@@ -105,6 +105,10 @@ class DataTransformation:
                 f"Applying preprocessing object on training dataframe and testing dataframe"
             )
 
+            # i think there is something wrong with code below because of the 'fit_transform'
+            # maybe should check them a little bit
+            # case normally it should train = fit_transform, test = transform only (no need to fit), but still dun know
+            
             input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr = preprocessing_obj.fit_transform(input_feature_test_df)
 

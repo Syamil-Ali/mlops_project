@@ -110,6 +110,12 @@ class ModelTrainer:
                 list(model_report.values()).index(best_model_score)
             ]
 
+            # at this point you might confuse like how the best model is saved, basically the model is already trained from the utils.py, so no need to worry
+            # just remember:
+            # model.fit(x,y)
+            # model.predit(x-test)
+            # see there no need to return the model
+
             best_model = models[best_model_name]
 
             if best_model_score<0.6:
@@ -117,6 +123,7 @@ class ModelTrainer:
             
             logging.info(f"Best found model on both training and testing dataset")
 
+            #TODO: Maybe at this point create something if model already exist, then compare the latest accuracy
             
             save_object(
                 file_path=self.model_trainer_config.trained_model_file_path,

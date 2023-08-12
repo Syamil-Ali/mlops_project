@@ -27,19 +27,23 @@ def save_object(file_path, obj):
 def evaluate_models(X_train, y_train,X_test,y_test,models, param):#,param):
     try:
         report = {}
-
+        
+        # loop for every models define
         for i in range(len(list(models))):
-            model = list(models.values())[i]
+            model = list(models.values())[i] # access model in the list
             
 
             # add parameter part
-            para=param[list(models.keys())[i]]
+            para=param[list(models.keys())[i]] # access the parameter improvement for the model
 
-            gs = GridSearchCV(model,para,cv=3)
+            gs = GridSearchCV(model,para,cv=3) # apply grid search to the model, cv = cross validation
             gs.fit(X_train,y_train)
 
-            model.set_params(**gs.best_params_)
+            model.set_params(**gs.best_params_) # retrain the model using the best paramater find
             #model.fit(X_train,y_train)
+            
+            # at this point, you might ask why need to retrain the model? 
+            # the answer is that the grid search is only to find the best param only, not for model prediction (yes it does have prediction but it does not have the capability to do production prediction)
 
             model.fit(X_train, y_train)  # Train model
 
@@ -51,7 +55,7 @@ def evaluate_models(X_train, y_train,X_test,y_test,models, param):#,param):
 
             test_model_score = r2_score(y_test, y_test_pred)
 
-            report[list(models.keys())[i]] = test_model_score
+            report[list(models.keys())[i]] = test_model_score # add the result to the report
 
         return report
 
@@ -63,7 +67,7 @@ def evaluate_models(X_train, y_train,X_test,y_test,models, param):#,param):
 def load_object(file_path):
 
     try:
-        with open(file_path, "rb") as file_obj:
+        with open(file_path, "rb") as file_obj: #"rb" == read binary
             return dill.load(file_obj)
 
     except Exception as e:
